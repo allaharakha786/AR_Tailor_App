@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:awesome_dialog/awesome_dialog.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,6 +20,7 @@ import 'package:previous/presentation/screens/login_screen.dart';
 import 'package:previous/presentation/screens/update_profile_info.dart';
 import 'package:previous/presentation/widgets/alert_dialog.dart';
 import 'package:previous/presentation/widgets/common_button.dart';
+import 'package:previous/presentation/widgets/common_network_image.dart';
 
 import '../../businessLogic/blocs/profileInfoBloc/profile_events.dart';
 import '../widgets/loading_indicator.dart';
@@ -102,57 +101,30 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                               children: [
                                 Center(
                                   child: Container(
-                                    height: mediaQuerySize.height *
-                                        ScreenPercentage.SCREEN_SIZE_20.h,
-                                    width: mediaQuerySize.width *
-                                        ScreenPercentage.SCREEN_SIZE_30.w,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            width: 1,
-                                            color: ColorsResources.WHITE_24),
-                                        color: ColorsResources.BLACK_COLOR,
-                                        shape: BoxShape.circle),
-                                    clipBehavior: Clip.antiAlias,
-                                    child: state.profileImage[0]
-                                            .data()['profileImage']
-                                            .toString()
-                                            .isEmpty
-                                        ? Icon(
-                                            Icons.person,
-                                            color: ColorsResources.WHITE_COLOR,
-                                          )
-                                        : Image.network(
-                                            state.profileImage[0]
-                                                .data()['profileImage'],
-                                            fit: BoxFit.cover,
-                                            loadingBuilder: (context, child,
-                                                loadingProgress) {
-                                              if (loadingProgress == null) {
-                                                return child;
-                                              }
-                                              return Center(
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                color: ColorsResources
-                                                    .AMBER_ACCENT,
-                                              ));
-                                            },
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              if (error is HttpException) {
-                                                return Center(
-                                                    child: Text(
-                                                        '${StringResources.NETWORK_ERROR}  ${error.message}'));
-                                              } else {
-                                                return Center(
-                                                    child: Text(
-                                                  StringResources.NETWORK_ERROR,
-                                                  textAlign: TextAlign.center,
-                                                ));
-                                              }
-                                            },
-                                          ),
-                                  ),
+                                      height: mediaQuerySize.height *
+                                          ScreenPercentage.SCREEN_SIZE_20.h,
+                                      width: mediaQuerySize.width *
+                                          ScreenPercentage.SCREEN_SIZE_30.w,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 1,
+                                              color: ColorsResources.WHITE_24),
+                                          color: ColorsResources.BLACK_COLOR,
+                                          shape: BoxShape.circle),
+                                      clipBehavior: Clip.antiAlias,
+                                      child: state.profileImage[0]
+                                              .data()['profileImage']
+                                              .toString()
+                                              .isEmpty
+                                          ? Icon(
+                                              Icons.person,
+                                              color:
+                                                  ColorsResources.WHITE_COLOR,
+                                            )
+                                          : CommonNetworkImage(
+                                              imagePath: state.profileImage[0]
+                                                  .data()['profileImage'],
+                                            )),
                                 ),
                                 Align(
                                   alignment: Alignment(

@@ -5,6 +5,7 @@ import 'package:previous/helper/constants/screen_percentage.dart';
 import 'package:previous/helper/constants/string_resources.dart';
 import 'package:previous/helper/utills/text_styles.dart';
 import 'package:previous/presentation/screens/checkout_screen.dart';
+import 'package:previous/presentation/widgets/common_backbutton.dart';
 import 'package:previous/presentation/widgets/decorated_container.dart';
 import 'package:previous/presentation/widgets/sizedbox_padding.dart';
 
@@ -45,7 +46,7 @@ class _ReviewSummaryScreenState extends State<ReviewSummaryScreen> {
               color: ColorsResources.AMBER_ACCENT,
             ),
             onPressed: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => PaymentMethods(
@@ -68,36 +69,20 @@ class _ReviewSummaryScreenState extends State<ReviewSummaryScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    DecoratedContainer(
-                      height: ScreenPercentage.SCREEN_SIZE_6,
-                      width: ScreenPercentage.SCREEN_SIZE_15,
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: DimensionsResource
-                                    .PADDING_SIZE_EXTRA_SMALL),
-                            child: Icon(
-                              size: mediaQuerySize.height *
-                                  ScreenPercentage.SCREEN_SIZE_4.h,
-                              Icons.arrow_back_ios,
-                              color: ColorsResources.AMBER_ACCENT,
-                            ),
+                    const Expanded(child: CommonBackButton()),
+                    Expanded(
+                      flex: 6,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              right:
+                                  DimensionsResource.PADDING_SIZE_EXTRA_LARGE),
+                          child: Text(
+                            StringResources.REVIEW_DETAILS,
+                            style: CustomTextStyles.titleTextStyle(
+                                ColorsResources.WHITE_70),
                           ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          right: mediaQuerySize.width *
-                              ScreenPercentage.SCREEN_SIZE_30.w),
-                      child: Text(
-                        StringResources.REVIEW_DETAILS,
-                        style: CustomTextStyles.titleTextStyle(
-                            ColorsResources.WHITE_70),
                       ),
                     )
                   ],
@@ -115,11 +100,11 @@ class _ReviewSummaryScreenState extends State<ReviewSummaryScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(
                         DimensionsResource.PADDING_SIZE_SMALL),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: List.generate(
-                            ListData.iconsOfMeasurementList.length,
-                            (index) => Column(
+                    child: Column(
+                      children: List.generate(
+                          ListData.iconsOfMeasurementList.length,
+                          (index) => Expanded(
+                                child: Column(
                                   children: [
                                     ListTile(
                                       leading: Image.asset(
@@ -140,8 +125,8 @@ class _ReviewSummaryScreenState extends State<ReviewSummaryScreen> {
                                       height: 0,
                                     )
                                   ],
-                                )),
-                      ),
+                                ),
+                              )),
                     ),
                   ),
                 ),
@@ -155,11 +140,11 @@ class _ReviewSummaryScreenState extends State<ReviewSummaryScreen> {
                 DecoratedContainer(
                     height: ScreenPercentage.SCREEN_SIZE_41,
                     width: ScreenPercentage.SCREEN_SIZE_100,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: List.generate(
-                            ListData.iconOfOrderList.length,
-                            (index) => Padding(
+                    child: Column(
+                      children: List.generate(
+                          ListData.iconOfOrderList.length,
+                          (index) => Expanded(
+                                child: Padding(
                                   padding: const EdgeInsets.all(
                                       DimensionsResource.PADDING_SIZE_SMALL),
                                   child: Column(
@@ -183,8 +168,8 @@ class _ReviewSummaryScreenState extends State<ReviewSummaryScreen> {
                                       )
                                     ],
                                   ),
-                                )),
-                      ),
+                                ),
+                              )),
                     ))
               ]),
             ),

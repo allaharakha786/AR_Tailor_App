@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:previous/helper/constants/colors_resources.dart';
 import 'package:previous/helper/constants/dimentions_resources.dart';
 import 'package:previous/helper/constants/screen_percentage.dart';
+import 'package:previous/helper/utills/text_styles.dart';
 
 import '../constants/string_resources.dart';
 
@@ -21,51 +22,63 @@ class DetailsAlertDialog extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       insetPadding: EdgeInsets.zero,
       content: Container(
-        height: mediaQuerySize.height * ScreenPercentage.SCREEN_SIZE_40.h,
-        width: mediaQuerySize.width * ScreenPercentage.SCREEN_SIZE_95.w,
-        decoration: BoxDecoration(
-            color: ColorsResources.WHITE_COLOR,
-            borderRadius: BorderRadius.all(
-                Radius.circular(DimensionsResource.RADIUS_EXTRA_LARGE))),
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Container(
-              height: mediaQuerySize.height * ScreenPercentage.SCREEN_SIZE_28.h,
-              width: mediaQuerySize.width * ScreenPercentage.SCREEN_SIZE_95.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                    DimensionsResource.RADIUS_EXTRA_LARGE),
-                image: DecorationImage(
-                    fit: BoxFit.cover, image: AssetImage(imageUrl)),
+        color: Colors.black,
+        child: Container(
+          height: mediaQuerySize.height * ScreenPercentage.SCREEN_SIZE_40.h,
+          width: mediaQuerySize.width * ScreenPercentage.SCREEN_SIZE_95.w,
+          decoration: BoxDecoration(
+              color: ColorsResources.WHITE_24,
+              borderRadius: BorderRadius.all(
+                  Radius.circular(DimensionsResource.RADIUS_EXTRA_LARGE))),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(
+                      DimensionsResource.PADDING_SIZE_EXTRA_SMALL),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                          DimensionsResource.RADIUS_EXTRA_LARGE),
+                      image: DecorationImage(
+                          fit: BoxFit.cover, image: AssetImage(imageUrl)),
+                    ),
+                  ),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: DimensionsResource.PADDING_SIZE_EXTRA_LARGE,
-                  right: DimensionsResource.PADDING_SIZE_EXTRA_LARGE),
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(detailsText,
-                    style: TextStyle(fontFamily: StringResources.SEGO_REGULAR)),
-              ),
-            ),
-            Align(
-                alignment: Alignment.bottomRight,
+              Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                      right: DimensionsResource.PADDING_SIZE_EXTRA_SMALL),
-                  child: TextButton(
-                      style: ButtonStyle(
-                        foregroundColor: MaterialStatePropertyAll(
-                            ColorsResources.BLACK_COLOR),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(StringResources.OK)),
-                ))
-          ],
+                      left: DimensionsResource.PADDING_SIZE_EXTRA_LARGE,
+                      right: DimensionsResource.PADDING_SIZE_EXTRA_LARGE),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(detailsText,
+                        style: CustomTextStyles.contentTextStyle(
+                            ColorsResources.WHITE_70)),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: DimensionsResource.PADDING_SIZE_EXTRA_SMALL),
+                      child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor: MaterialStatePropertyAll(
+                                ColorsResources.AMBER_ACCENT),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(StringResources.OK)),
+                    )),
+              )
+            ],
+          ),
         ),
       ),
     );

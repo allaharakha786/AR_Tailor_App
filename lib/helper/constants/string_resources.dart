@@ -8,11 +8,14 @@ class StringResources {
   static String ADD_MEASUREMENT = 'Add Measurement';
   static String DETAILS = 'Details';
   static String MEASUREMENT_IN_INCHES = 'Add your measurement in Inches';
+  static String AR_TAILOR_APP = 'AR Tailor App';
 
   static String PASSWORD = 'Password';
   static String UPLOADING_IMAGE = 'Uploading your image';
 
   static String NETWORK_ERROR = 'Network error:';
+  static String PKR = 'PKR';
+
   static String ERROR_MESSAGE = 'something went wrong';
 
   static String CHOOSE_ANY_METHOD = 'Choose Any Method';

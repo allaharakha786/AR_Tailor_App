@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:previous/helper/constants/colors_resources.dart';
 import 'package:previous/helper/constants/screen_percentage.dart';
+import 'package:previous/presentation/widgets/common_backbutton.dart';
 
 import '../../helper/constants/dimentions_resources.dart';
 import '../../helper/utills/text_styles.dart';
-import '../widgets/decorated_container.dart';
 
 // ignore: must_be_immutable
 class FullScreenshotScreen extends StatelessWidget {
@@ -32,28 +32,7 @@ class FullScreenshotScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      DecoratedContainer(
-                        height: ScreenPercentage.SCREEN_SIZE_6,
-                        width: ScreenPercentage.SCREEN_SIZE_15,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: DimensionsResource
-                                      .PADDING_SIZE_EXTRA_SMALL),
-                              child: Icon(
-                                size: mediaQuerySize.height *
-                                    ScreenPercentage.SCREEN_SIZE_4.h,
-                                Icons.arrow_back_ios,
-                                color: ColorsResources.AMBER_ACCENT,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      const CommonBackButton(),
                       SizedBox(
                         width: mediaQuerySize.width *
                             ScreenPercentage.SCREEN_SIZE_15.w,

@@ -11,12 +11,12 @@ import 'package:previous/helper/constants/string_resources.dart';
 import 'package:previous/helper/enums/status_enums.dart';
 import 'package:previous/presentation/screens/bottom_navigation_bar.dart';
 import 'package:previous/presentation/widgets/alert_dialog.dart';
+import 'package:previous/presentation/widgets/common_backbutton.dart';
 import 'package:previous/presentation/widgets/common_button.dart';
 
 import '../../businessLogic/blocs/ordersBloc/order_states.dart';
 import '../../helper/constants/dimentions_resources.dart';
 import '../../helper/utills/text_styles.dart';
-import '../widgets/decorated_container.dart';
 import '../widgets/drop_down_widget.dart';
 
 import 'billing_details_screen.dart';
@@ -74,36 +74,20 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        DecoratedContainer(
-                          height: ScreenPercentage.SCREEN_SIZE_6,
-                          width: ScreenPercentage.SCREEN_SIZE_15,
-                          child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: DimensionsResource
-                                        .PADDING_SIZE_EXTRA_SMALL),
-                                child: Icon(
-                                  size: mediaQuerySize.height *
-                                      ScreenPercentage.SCREEN_SIZE_4.h,
-                                  Icons.arrow_back_ios,
-                                  color: ColorsResources.AMBER_ACCENT,
-                                ),
+                        const Expanded(child: CommonBackButton()),
+                        Expanded(
+                          flex: 6,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  right: DimensionsResource
+                                      .PADDING_SIZE_EXTRA_LARGE),
+                              child: Text(
+                                StringResources.CHECK_OUT,
+                                style: CustomTextStyles.titleTextStyle(
+                                    ColorsResources.WHITE_70),
                               ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              right: mediaQuerySize.width *
-                                  ScreenPercentage.SCREEN_SIZE_35.w),
-                          child: Text(
-                            StringResources.CHECK_OUT,
-                            style: CustomTextStyles.titleTextStyle(
-                                ColorsResources.WHITE_70),
                           ),
                         )
                       ],

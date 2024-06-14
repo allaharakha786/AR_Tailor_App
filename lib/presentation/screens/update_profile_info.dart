@@ -11,12 +11,12 @@ import 'package:previous/helper/constants/string_resources.dart';
 import 'package:previous/helper/enums/status_enums.dart';
 import 'package:previous/presentation/screens/bottom_navigation_bar.dart';
 import 'package:previous/presentation/widgets/alert_dialog.dart';
+import 'package:previous/presentation/widgets/common_backbutton.dart';
 import 'package:previous/presentation/widgets/common_button.dart';
 import 'package:previous/presentation/widgets/common_textfield.dart';
 
 import '../../helper/constants/colors_resources.dart';
 import '../../helper/constants/dimentions_resources.dart';
-import '../widgets/decorated_container.dart';
 
 // ignore: must_be_immutable
 class UpdateProfileInfo extends StatefulWidget {
@@ -80,34 +80,17 @@ class _UpdateProfileInfoState extends State<UpdateProfileInfo> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                DecoratedContainer(
-                                  height: ScreenPercentage.SCREEN_SIZE_6,
-                                  width: ScreenPercentage.SCREEN_SIZE_15,
-                                  child: IconButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    icon: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: DimensionsResource
-                                                .PADDING_SIZE_EXTRA_SMALL),
-                                        child: Icon(
-                                          size: mediaQuerySize.height *
-                                              ScreenPercentage.SCREEN_SIZE_4.h,
-                                          Icons.arrow_back_ios,
-                                          color: ColorsResources.AMBER_ACCENT,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: mediaQuerySize.width *
-                                          ScreenPercentage.SCREEN_SIZE_13.w),
-                                  child: Text(StringResources.EDIT_PROFILE),
-                                ),
+                                const Expanded(child: CommonBackButton()),
+                                Expanded(
+                                    flex: 6,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: DimensionsResource
+                                              .PADDING_SIZE_EXTRA_LARGE),
+                                      child: Center(
+                                          child: Text(
+                                              StringResources.EDIT_PROFILE)),
+                                    )),
                               ]),
                           Column(
                               children: List.generate(4, (index) {

@@ -64,7 +64,19 @@ class OrderBloc extends Bloc<OrderEvents, OrderStates> {
     final formattedTime = DateFormat('HH:mm:ss').format(time);
     emit(state.copyWith(isLoading: true, states: StatusEnums.INITIAL_STATE));
     try {
+      QuerySnapshot<Map<String, dynamic>> firestoreCollection =
+          await FirebaseFirestore.instance
+              .collection('users')
+              .where('userId', isEqualTo: firebaseAuthInstance.currentUser!.uid)
+              .get();
+      List<QueryDocumentSnapshot<Map<String, dynamic>>> snapshot =
+          firestoreCollection.docs;
+
       await firestoreInstance.doc().set({
+        'userName': snapshot[0]['name'],
+        'email': snapshot[0]['email'],
+        'address': snapshot[0]['address'],
+        'phone': snapshot[0]['phone'],
         'userId': firebaseAuthInstance.currentUser!.uid,
         'chestSize': event.orderData[0],
         'waistSize': event.orderData[1],

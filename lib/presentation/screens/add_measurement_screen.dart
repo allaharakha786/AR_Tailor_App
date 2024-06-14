@@ -83,15 +83,20 @@ class _AddMeasurementScreenState extends State<AddMeasurementScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const CommonBackButton(),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                right: mediaQuerySize.width *
-                                    ScreenPercentage.SCREEN_SIZE_25.w),
-                            child: Text(
-                              StringResources.ADD_MEASUREMENT,
-                              style: CustomTextStyles.titleTextStyle(
-                                  ColorsResources.WHITE_70),
+                          const Expanded(child: CommonBackButton()),
+                          Expanded(
+                            flex: 6,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    right: DimensionsResource
+                                        .PADDING_SIZE_EXTRA_LARGE),
+                                child: Text(
+                                  StringResources.ADD_MEASUREMENT,
+                                  style: CustomTextStyles.titleTextStyle(
+                                      ColorsResources.WHITE_70),
+                                ),
+                              ),
                             ),
                           )
                         ],

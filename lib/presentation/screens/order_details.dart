@@ -7,6 +7,7 @@ import 'package:previous/helper/constants/screen_percentage.dart';
 import 'package:previous/helper/constants/string_resources.dart';
 import 'package:previous/helper/utills/text_styles.dart';
 import 'package:previous/presentation/screens/update_order.dart';
+import 'package:previous/presentation/widgets/common_backbutton.dart';
 
 import '../../helper/data/list_data.dart';
 import '../widgets/decorated_container.dart';
@@ -38,28 +39,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    DecoratedContainer(
-                      height: ScreenPercentage.SCREEN_SIZE_6,
-                      width: ScreenPercentage.SCREEN_SIZE_15,
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: DimensionsResource
-                                    .PADDING_SIZE_EXTRA_SMALL),
-                            child: Icon(
-                              size: mediaQuerySize.height *
-                                  ScreenPercentage.SCREEN_SIZE_4.h,
-                              Icons.arrow_back_ios,
-                              color: ColorsResources.AMBER_ACCENT,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    const CommonBackButton(),
                     SizedBox(
                       width: mediaQuerySize.width *
                           ScreenPercentage.SCREEN_SIZE_10.w,
@@ -109,24 +89,24 @@ class OrderDetailsScreen extends StatelessWidget {
                 DecoratedContainer(
                   height: ScreenPercentage.SCREEN_SIZE_21,
                   width: ScreenPercentage.SCREEN_SIZE_100,
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(
-                          DimensionsResource.PADDING_SIZE_DEFAULT),
-                      child: Column(
-                        children: List.generate(3, (index) {
-                          List<String> title = [
-                            StringResources.ORDER_CREATED,
-                            StringResources.ORDER_TIME_,
-                            StringResources.PAYMENT_METHOD
-                          ];
-                          List details = [
-                            data['orderDate'],
-                            data['orderTime'],
-                            data['paymentMethod']
-                          ];
+                  child: Padding(
+                    padding: const EdgeInsets.all(
+                        DimensionsResource.PADDING_SIZE_DEFAULT),
+                    child: Column(
+                      children: List.generate(3, (index) {
+                        List<String> title = [
+                          StringResources.ORDER_CREATED,
+                          StringResources.ORDER_TIME_,
+                          StringResources.PAYMENT_METHOD
+                        ];
+                        List details = [
+                          data['orderDate'],
+                          data['orderTime'],
+                          data['paymentMethod']
+                        ];
 
-                          return Column(
+                        return Expanded(
+                          child: Column(
                             children: [
                               Row(
                                 mainAxisAlignment:
@@ -146,9 +126,9 @@ class OrderDetailsScreen extends StatelessWidget {
                                 color: ColorsResources.WHITE_24,
                               )
                             ],
-                          );
-                        }),
-                      ),
+                          ),
+                        );
+                      }),
                     ),
                   ),
                 ),
@@ -167,10 +147,10 @@ class OrderDetailsScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(
                         DimensionsResource.PADDING_SIZE_DEFAULT),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Row(
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(StringResources.ORDER_STATUS),
@@ -181,29 +161,29 @@ class OrderDetailsScreen extends StatelessWidget {
                               )
                             ],
                           ),
-                          data['paymentMethod'].toLowerCase().contains('on')
-                              ? const SizedBox()
-                              : Divider(
-                                  color: ColorsResources.WHITE_12,
-                                ),
-                          data['paymentMethod'].toLowerCase().contains('on')
-                              ? const SizedBox()
-                              : Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      StringResources.PAYMENT_STATUS,
-                                    ),
-                                    Text(
-                                      data['paymentStatus'],
-                                      style: CustomTextStyles.detailsTextStyle(
-                                          ColorsResources.AMBER_ACCENT),
-                                    )
-                                  ],
-                                )
-                        ],
-                      ),
+                        ),
+                        data['paymentMethod'].toLowerCase().contains('on')
+                            ? const SizedBox()
+                            : Divider(
+                                color: ColorsResources.WHITE_12,
+                              ),
+                        data['paymentMethod'].toLowerCase().contains('on')
+                            ? const SizedBox()
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    StringResources.PAYMENT_STATUS,
+                                  ),
+                                  Text(
+                                    data['paymentStatus'],
+                                    style: CustomTextStyles.detailsTextStyle(
+                                        ColorsResources.AMBER_ACCENT),
+                                  )
+                                ],
+                              )
+                      ],
                     ),
                   ),
                 ),
@@ -220,46 +200,44 @@ class OrderDetailsScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(
                         DimensionsResource.PADDING_SIZE_DEFAULT),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: List.generate(9, (index) {
-                          List measurementDetails = [
-                            data['chestSize'],
-                            data['waistSize'],
-                            data['hipsSize'],
-                            data['inseamSize'],
-                            data['thighSize'],
-                            data['armSize'],
-                            data['shoulderSize'],
-                            data['neckSize'],
-                            data['sleeveSize'],
-                          ];
+                    child: Column(
+                      children: List.generate(9, (index) {
+                        List measurementDetails = [
+                          data['chestSize'],
+                          data['waistSize'],
+                          data['hipsSize'],
+                          data['inseamSize'],
+                          data['thighSize'],
+                          data['armSize'],
+                          data['shoulderSize'],
+                          data['neckSize'],
+                          data['sleeveSize'],
+                        ];
 
-                          return SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      ListData.measurementTitles[index],
-                                    ),
-                                    Text(
-                                      measurementDetails[index],
-                                      style: CustomTextStyles.detailsTextStyle(
-                                          ColorsResources.AMBER_ACCENT),
-                                    )
-                                  ],
-                                ),
-                                Divider(
-                                  color: ColorsResources.WHITE_24,
-                                )
-                              ],
-                            ),
-                          );
-                        }),
-                      ),
+                        return Expanded(
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    ListData.measurementTitles[index],
+                                  ),
+                                  Text(
+                                    measurementDetails[index],
+                                    style: CustomTextStyles.detailsTextStyle(
+                                        ColorsResources.AMBER_ACCENT),
+                                  )
+                                ],
+                              ),
+                              Divider(
+                                color: ColorsResources.WHITE_24,
+                              )
+                            ],
+                          ),
+                        );
+                      }),
                     ),
                   ),
                 ),
@@ -277,7 +255,8 @@ class OrderDetailsScreen extends StatelessWidget {
                         height: ScreenPercentage.SCREEN_SIZE_7,
                         width: ScreenPercentage.SCREEN_SIZE_100,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(
+                              DimensionsResource.PADDING_SIZE_DEFAULT),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -287,7 +266,7 @@ class OrderDetailsScreen extends StatelessWidget {
                               Text(
                                 data['transactionId'],
                                 style: CustomTextStyles.detailsTextStyle(
-                                    Colors.amberAccent),
+                                    ColorsResources.AMBER_ACCENT),
                               )
                             ],
                           ),

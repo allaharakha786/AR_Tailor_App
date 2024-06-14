@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,8 +11,8 @@ import 'package:previous/businessLogic/blocs/bottomNavigationBloc/bottom_navigat
 import 'package:previous/businessLogic/blocs/ordersBloc/order_bloc.dart';
 import 'package:previous/businessLogic/blocs/profileInfoBloc/profile_bloc.dart';
 import 'package:previous/helper/constants/colors_resources.dart';
-import 'package:previous/presentation/screens/bottom_navigation_bar.dart';
-import 'package:previous/presentation/screens/login_screen.dart';
+
+import 'package:previous/presentation/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,14 +31,13 @@ void main() async {
               messagingSenderId: '11809106901',
               projectId: 'oerassssssssssssssss',
               storageBucket: "oerassssssssssssssss.appspot.com"));
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
-  FirebaseAuth firebaseInstance = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     Size mediaQuerySize = MediaQuery.of(context).size;
@@ -68,16 +66,13 @@ class MyApp extends StatelessWidget {
               )
             ],
             child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                  textTheme: TextTheme(
-                      bodyMedium: TextStyle(color: ColorsResources.WHITE_70),
-                      bodySmall: TextStyle(color: ColorsResources.WHITE_70),
-                      bodyLarge: TextStyle(color: ColorsResources.WHITE_70))),
-              home: firebaseInstance.currentUser?.uid == null
-                  ? LoginScreen()
-                  : BottomNavigationBarScreen(),
-            )),
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                    textTheme: TextTheme(
+                        bodyMedium: TextStyle(color: ColorsResources.WHITE_70),
+                        bodySmall: TextStyle(color: ColorsResources.WHITE_70),
+                        bodyLarge: TextStyle(color: ColorsResources.WHITE_70))),
+                home: SplashScreen())),
       ),
     );
   }

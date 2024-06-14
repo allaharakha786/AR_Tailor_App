@@ -15,9 +15,9 @@ import 'package:previous/helper/extenstions/validation_extension.dart';
 import 'package:previous/helper/utills/alert_dialog.dart';
 import 'package:previous/helper/utills/text_styles.dart';
 import 'package:previous/presentation/screens/bottom_navigation_bar.dart';
+import 'package:previous/presentation/widgets/common_backbutton.dart';
 import 'package:previous/presentation/widgets/common_button.dart';
 import 'package:previous/presentation/widgets/common_textfield.dart';
-import 'package:previous/presentation/widgets/decorated_container.dart';
 import 'package:previous/presentation/widgets/sizedbox_padding.dart';
 
 import '../../helper/constants/string_resources.dart';
@@ -100,28 +100,7 @@ class _UpdateOrderScreenState extends State<UpdateOrderScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              DecoratedContainer(
-                                height: ScreenPercentage.SCREEN_SIZE_6,
-                                width: ScreenPercentage.SCREEN_SIZE_15,
-                                child: IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: DimensionsResource
-                                              .PADDING_SIZE_EXTRA_SMALL),
-                                      child: Icon(
-                                        size: mediaQuerySize.height *
-                                            ScreenPercentage.SCREEN_SIZE_4.h,
-                                        Icons.arrow_back_ios,
-                                        color: ColorsResources.AMBER_ACCENT,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              const CommonBackButton(),
                               SizedBox(
                                 width: mediaQuerySize.width *
                                     ScreenPercentage.SCREEN_SIZE_13.w,
